@@ -53,8 +53,8 @@ yarn start
 1. `yarn lint` to run eslint
 1. `yarn lint:fix` to run eslint with fix mode
 1. `yarn format` to run prettier
-1. `test` to create new database based on `Test_DB_Name` environment variable and run all tests on this database
-1. `watch` to start the app with nodemon and typescript-watch for hot reload on changes
+1. `yarn test` to create new database based on `Test_DB_Name` environment variable and run all tests on this database
+1. `yarn watch` to start the app with nodemon and typescript-watch for hot reload on changes
 
 ## <a name="compose"></a> Run this application with docker compose 
 here is up command to start the app on port 4002 by default, also if you need you can change this behavior by modify docker-compose.yaml and change environment variables as you want.
