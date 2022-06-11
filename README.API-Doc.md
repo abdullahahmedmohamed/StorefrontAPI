@@ -1,11 +1,11 @@
 # Users
 ## `GET`  /api/users  
----
+
 ### Authorization :  
 require *Authorization* header with valid token example:-  
 `Authorization: 'Bearer ' + jwtToken`
 ### Description :
-retrive all users data
+retrieve all users data
 ### Parameter: 
 no parameters required
 ### Response
@@ -23,12 +23,12 @@ type ShowUserDto = {
 
 
 ## `GET`  /api/users/:id
----
+
 ### Authorization :  
 require *Authorization* header with valid token example:-  
 `Authorization: 'Bearer ' + jwtToken`
 ### Description :
-retrive user data by id
+retrieve user data by id
 ### Parameter: 
 require  id number in url as route parameter, example `/api/users/3`
 ### Response
@@ -46,7 +46,7 @@ type ShowUserDto = {
 ```
 
 ## `POST`  /api/users/register
----
+
 ### Authorization :  
 no *Authorization* required
 ### Description :
@@ -94,7 +94,7 @@ type SuccessLoginResponse = {
 ```
 
 ## `POST`  /api/users/login
----
+
 ### Authorization :  
 no *Authorization* required
 ### Description :
@@ -144,11 +144,11 @@ type SuccessLoginResponse = {
 
 # Products
 ### `GET`  /api/products  
----
+
 #### Authorization :  
 no *Authorization* required
 #### Description :
-retrive all products data
+retrieve all products data
 #### Parameter: 
 no parameters required
 #### Response
@@ -165,11 +165,11 @@ type Product = {
 
 
 ### `GET`  /api/products/:id
----
+
 #### Authorization :  
 no *Authorization* required
 #### Description :
-retrive product data by id
+retrieve product data by id
 #### Parameter: 
 require  id number in url as route parameter, example `/api/products/5`
 #### Response
@@ -186,7 +186,7 @@ type Product = {
 ```
 
 ## `POST`  /api/products
----
+
 ### Authorization :  
 require *Authorization* header with valid token example:-  
 `Authorization: 'Bearer ' + jwtToken`
@@ -231,7 +231,7 @@ type Product = {
 ```
 
 ## `PUT`  /api/products/:id
----
+
 ### Authorization :  
 require *Authorization* header with valid token example:-  
 `Authorization: 'Bearer ' + jwtToken`
@@ -271,7 +271,7 @@ update existing product by id
 
 
 ## `DELETE`  /api/products/:id
----
+
 ### Authorization :  
 require *Authorization* header with valid token example:-  
 `Authorization: 'Bearer ' + jwtToken`
@@ -292,12 +292,12 @@ require  id number in url as route parameter, example `/api/products/5`
 
 # Orders
 ## `GET`  /api/orders  
----
+
 ### Authorization :  
 require *Authorization* header with valid token example:-  
 `Authorization: 'Bearer ' + jwtToken`
 ### Description :
-retrive all orders data
+retrieve all orders data
 ### Parameter: 
 no parameters required
 ### Response
@@ -314,12 +314,12 @@ type Order = {
 
 
 ### `GET`  /api/orders/:id
----
+
 ### Authorization :  
 require *Authorization* header with valid token example:-  
 `Authorization: 'Bearer ' + jwtToken`
 ### Description :
-retrive order data by id
+retrieve order data by id
 ### Parameter: 
 require  id number in url as route parameter, example `/api/orders/5`
 ### Response
@@ -342,7 +342,7 @@ type OrderProductDto = {
 ```
 
 ## `POST`  /api/orders
----
+
 ### Authorization :  
 require *Authorization* header with valid token example:-  
 `Authorization: 'Bearer ' + jwtToken`
@@ -409,7 +409,7 @@ type OrderProductDto = {
 ```
 
 ## `PUT`  /api/orders/:id
----
+
 ### Authorization :  
 require *Authorization* header with valid token example:-  
 `Authorization: 'Bearer ' + jwtToken`
@@ -465,7 +465,7 @@ require order data in the request body
 
 
 ## `DELETE`  /api/orders/:id
----
+
 ### Authorization :  
 require *Authorization* header with valid token example:-  
 `Authorization: 'Bearer ' + jwtToken`
