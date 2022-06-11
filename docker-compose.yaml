@@ -1,0 +1,41 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:14.3-alpine
+    container_name: postgres-db
+    restart: always
+    env_file: .env
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: node-app
+    restart: always
+    env_file: .env
+    environment:
+      - APP_PORT=4002
+      - DB_HOST=db
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_PORT=${DB_PORT}
+    ports:
+      - "4002:4002"
+    depends_on:
+      - db
+    command: sh -c "./wait-for.sh db:5432 -- yarn migrate && yarn start"
+    #command: > 
+    #  sh -c "./wait-for.sh db:5432 -- yarn migrate &&
+    #   yarn start"
+    
+  
+
+volumes:
+  pgdata:
+    driver: local
