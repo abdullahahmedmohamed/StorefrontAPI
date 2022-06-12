@@ -1,13 +1,12 @@
 import { Pool } from 'pg';
-
-const dbName = process.env.NODE_ENV == 'test' ? process.env.Test_DB_Name : process.env.DB_NAME;
+import appConfig from './appConfig';
 
 const database = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  port: parseInt(process.env.DB_PORT),
-  password: process.env.DB_PASSWORD,
-  database: dbName,
+  user: appConfig.db.user,
+  host: appConfig.db.host,
+  port: appConfig.db.port,
+  password: appConfig.db.password,
+  database: appConfig.db.dbName,
 });
 
 export default database;

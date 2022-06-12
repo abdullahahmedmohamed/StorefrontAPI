@@ -4,10 +4,9 @@ import validate from './validate';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import logger from '../../logger';
+import appConfig from '../../appConfig';
 
-const { PASSWORD_PEPPER, JWT_KEY } = process.env;
-const SALT_ROUND = parseInt(process.env.SALT_ROUND);
-
+const { saltRound, jwtExpiresIn, passwordPepper, jwtKey } = appConfig.auth;
 class UserService {
   async index(): Promise<ShowUserDto[]> {
     return await userStore.getAll();
@@ -31,7 +30,7 @@ class UserService {
       throw ApiError.BadRequest([{ field: 'userName', msg: 'username already exists' }]);
     }
 
-    dto.password = await bcrypt.hash(dto.password + PASSWORD_PEPPER, SALT_ROUND);
+    dto.password = await bcrypt.hash(dto.password + passwordPepper, saltRound);
     dto.userName = dto.userName.toLowerCase();
 
     const user = await userStore.create(dto);
@@ -48,7 +47,7 @@ class UserService {
       throw ApiError.BadRequest([{ field: 'userName', msg: 'username not exists' }]);
     }
 
-    const valid = await bcrypt.compare(password + PASSWORD_PEPPER, user.password);
+    const valid = await bcrypt.compare(password + passwordPepper, user.password);
 
     if (!valid) {
       throw ApiError.BadRequest([{ field: 'password', msg: 'invalid password' }]);
@@ -66,13 +65,12 @@ class UserService {
   }
 
   private generateToken(dto: Omit<ShowUserDto, 'userName'>): string {
-    const expiresIn = process.env.NODE_ENV == 'production' ? 60 * 30 : '60d'; // 30 minute or 60 day
-    return jwt.sign(dto, JWT_KEY, { subject: dto.id.toString(), algorithm: 'HS256', expiresIn });
+    return jwt.sign(dto, jwtKey, { subject: dto.id.toString(), algorithm: 'HS256', expiresIn: jwtExpiresIn });
   }
 
   validateToken(token: string): Promise<ShowUserDto> {
     return new Promise<ShowUserDto>((resolve, reject) => {
-      jwt.verify(token, JWT_KEY, { algorithms: ['HS256'] }, (error: any, user: any) => {
+      jwt.verify(token, jwtKey, { algorithms: ['HS256'] }, (error: any, user: any) => {
         if (error) {
           logger.info('Forbidden - UnAuthorized:JWT Validation', { error });
           return reject(ApiError.Forbidden());
