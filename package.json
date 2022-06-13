@@ -9,7 +9,7 @@
     "jasmine": "jasmine",
     "lint:fix": "yarn lint -- --fix",
     "build": "rm -rf ./dist && tsc",
-    "init-test-env": "yarn build && db-migrate db:drop test_store_front_db && db-migrate db:create test_store_front_db && db-migrate -e test up && db-migrate  db:drop test_store_front_db",
+    "init-test-env": "yarn build && db-migrate db:drop test_store_front_db && db-migrate db:create test_store_front_db && db-migrate -e test up",
     "run-test": "cross-env NODE_ENV=test yarn jasmine",
     "test": "yarn init-test-env && yarn run-test",
     "watch": "concurrently \"yarn tsc --watch\" \"yarn nodemon ./dist/index.js\"",
