@@ -1,7 +1,9 @@
 # Storefront
 it's a simple web API, its mini e-commerce app to show some products and create orders with an authentication & authorization system
 
-[please consider to look at API documentation](README.API-Doc.md)
+**Please consider To look at Technical documentations:**
+1. [API documentation](README.API-Doc.md)
+1. [Database Schema](README.Database-Schema.md)
 
 # Project Folder Structure
 `/src/model` represent data access layer which contains data model with its specs(tests) files.
@@ -49,11 +51,19 @@ yarn build
 yarn start
 ```
 
+#### 6) running tests
+```
+yarn test
+```
+please note that by default the application will create new database with name `test_store_front_db` and run all tests on this database so if you want to change this database name 
+1. update .env file and replace the value of `Test_DB_Name`
+2. in package.json search for `test_store_front_db` then replace it with new name
+
+
 ### Other useful scripts
 1. `yarn lint` to run eslint
 1. `yarn lint:fix` to run eslint with fix mode
 1. `yarn format` to run prettier
-1. `yarn test` to create new database based on `Test_DB_Name` environment variable and run all tests on this database
 1. `yarn watch` to start the app with nodemon and typescript-watch for hot reload on changes
 
 ## <a name="compose"></a> Run this application with docker compose 
